@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html ng-app>
+<html data-ng-app="">
 	<head>
-		<title></title>
+		<title>Using Angularjs Directives and Data Binding</title>
 	</head>
 	<body>
-		<div class="container">
-			Name: <input type="text" ng-model="name" /> {{ name }}
+		<div class="container" data-ng-init="names=['Peter', 'John', 'Mary']">
+			<h3>Looping with ng-repeat Directives</h3>
+			<ul>
+				<li data-ng-repeat="name in names">
+					{{ name }}
+				</li>
+			</ul>
+			<h3>Data Binding Demostration</h3>
+			Name: 
+			<br />
+			<input type="text" data-ng-model="name" /> {{ name }}
 		</div>	
 
 		<script src="angular.min.js"></script>
