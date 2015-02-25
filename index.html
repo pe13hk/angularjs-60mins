@@ -4,22 +4,29 @@
 		<title>Using Angularjs Directives and Data Binding</title>
 	</head>
 	<body>
-		<div data-ng-controller="SimpleController">
-			<h3>Data Binding Demostration - Filtering</h3>
-			Name: 
-			<br />
-			<input type="text" data-ng-model="name" /> {{ name }}
-			<h3>Looping with ng-repeat Directives</h3>
-			<ul>
-				<li data-ng-repeat="person in names | filter: name">
-					{{ person.name }} - {{ person.city }}
-				</li>
-			</ul>
-		</div>	
+		<div>
+			<div data-ng-view=""></div>
+		</div>
 
 		<script src="angular.min.js"></script>
+		<script src="angular-route.js"></script>
 		<script>
-			var demoApp = angular.module('demoApp', []);
+			var demoApp = angular.module('demoApp', ['ngRoute']);
+
+			demoApp.config(function($routeProvider){
+				$routeProvider
+					.when('/', 
+						{
+							controller: 'SimpleController',
+							templateUrl: 'Partials/View1.html'
+						})
+					.when('/view2',
+						{
+							controller: 'SimpleController',
+							templateUrl: 'Partials/View2.html'
+						})
+					.otherwise({ redirectTo: '/' });
+			});
 
 			demoApp.controller('SimpleController',
 				function($scope){
